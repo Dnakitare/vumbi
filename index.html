@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>vumbi · daily rally</title>
+    <style>
+      :root {
+        --panel: rgba(28, 18, 10, 0.72);
+        --paper: #f4e6cf;
+        --accent: #ff7a3c;
+        --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+        --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #d9b98a; }
+      #app { position: fixed; inset: 0; }
+      canvas { display: block; }
+      .shadow { text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
+
+      .hud { position: fixed; left: 18px; bottom: 16px; z-index: 5; font-family: var(--mono); color: var(--paper); pointer-events: none; }
+      .speed { font-size: 46px; font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; }
+      .speed small { font-size: 15px; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+      .readout { font-size: 13px; margin-top: 6px; opacity: 0.9; }
+      .readout b { color: var(--accent); }
+
+      .brand { position: fixed; left: 18px; top: 14px; z-index: 5; font-family: var(--mono); color: var(--paper); }
+      .brand .n { font-size: 22px; font-weight: 700; letter-spacing: 0.18em; }
+      .brand .s { font-size: 11px; opacity: 0.7; letter-spacing: 0.1em; margin-top: 2px; }
+
+      /* race timer, top center */
+      .timerbar { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 5; text-align: center; font-family: var(--mono); color: var(--paper); pointer-events: none; }
+      .rtime { font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+      .rprog { font-size: 12px; opacity: 0.8; margin-top: 2px; letter-spacing: 0.08em; }
+
+      /* countdown */
+      .count { position: fixed; inset: 0; z-index: 8; display: none; place-items: center; pointer-events: none; }
+      .count.on { display: grid; }
+      .count b { font-family: var(--sans); font-weight: 800; font-size: 160px; color: var(--paper); text-shadow: 0 6px 24px rgba(0,0,0,0.6); animation: pop 0.9s ease; }
+      @keyframes pop { 0% { transform: scale(1.5); opacity: 0; } 30% { transform: scale(1); opacity: 1; } 100% { opacity: 0.85; } }
+
+      /* finish overlay */
+      .finish { position: fixed; inset: 0; z-index: 10; display: none; place-items: center; background: rgba(14, 9, 4, 0.62); backdrop-filter: blur(4px); }
+      .finish.on { display: grid; animation: fade 0.4s ease; }
+      @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+      .fcard { background: rgba(30, 20, 12, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 30px 40px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,0.5); font-family: var(--sans); color: var(--paper); min-width: 320px; }
+      .fcard .cap { font-family: var(--mono); font-size: 13px; letter-spacing: 0.24em; color: var(--accent); text-transform: uppercase; }
+      .fcard .ft { font-size: 64px; font-weight: 800; font-variant-numeric: tabular-nums; margin: 6px 0 2px; letter-spacing: -0.01em; }
+      .fcard .fbest { font-family: var(--mono); font-size: 14px; opacity: 0.85; margin-bottom: 22px; }
+      .fcard .fbest b { color: var(--accent); }
+      .fcard .frow { display: flex; gap: 10px; justify-content: center; }
+      .fcard button { font-family: var(--sans); font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: var(--paper); }
+      .fcard button.primary { background: var(--accent); border-color: var(--accent); color: #2a1406; }
+
+      .keys { position: fixed; right: 16px; bottom: 16px; z-index: 5; background: var(--panel); color: var(--paper); font-family: var(--mono); font-size: 12px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(3px); }
+      .keys b { color: var(--accent); }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    </style>
+    <script type="module" crossorigin src="/vumbi/assets/main-DKzyCTBR.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-DgpC08D1.js">
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div class="brand shadow"><div class="n">VUMBI</div><div class="s">car <b id="carname" style="color:var(--accent)">Falcon</b></div></div>
+
+    <div class="timerbar shadow">
+      <div class="rtime" id="racetimer">0:00.00</div>
+      <div class="rprog" id="progress">0%</div>
+    </div>
+
+    <div class="hud shadow">
+      <div class="speed"><span id="speed">0</span><small>km/h</small></div>
+      <div class="readout">surface <b id="surface">dirt</b> · slip <b id="slip">0°</b></div>
+    </div>
+
+    <div class="count" id="count"><b id="countnum">3</b></div>
+
+    <div class="finish" id="finish">
+      <div class="fcard">
+        <div class="cap">stage complete</div>
+        <div class="ft" id="finishTime">0:00.00</div>
+        <div class="fbest" id="finishBest"></div>
+        <div class="frow">
+          <button class="primary" id="restartBtn">race again</button>
+          <button id="garageBtn">garage</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="keys">
+      <div><b>W/↑</b> throttle &nbsp; <b>S/↓</b> brake</div>
+      <div><b>A D / ← →</b> steer</div>
+      <div><b>Space</b> handbrake &nbsp; <b>R</b> restart</div>
+      <div><b>1–5</b> switch car</div>
+    </div>
+
+  </body>
+</html>

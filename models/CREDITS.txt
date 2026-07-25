@@ -1,4 +1,8 @@
-Car models from Poly Pizza (https://poly.pizza) — CC-BY / CC0.
-Credit the individual creators before public release; see each model page.
-- rx7.glb   Mazda RX-7 by IvOfficial   https://poly.pizza/m/SnIoWlh7S2
-- wedge.glb / wagon.glb / muscle.glb / suv.glb — poly.pizza (fill creator credits)
+Vumbi car models — from Poly Pizza (https://poly.pizza), CC-BY / CC0.
+Credit each creator before any public/commercial release:
+
+coupe.glb |  | https://poly.pizza/m/4P4buLkUIjH
+rx7.glb |  | https://poly.pizza/m/SnIoWlh7S2
+stratos.glb |  | https://poly.pizza/m/7h-gfgCLPVO
+jeep.glb |  | https://poly.pizza/m/0CZY9yGxi6Y
+hatch.glb |  | https://poly.pizza/m/1uZKezeldGG

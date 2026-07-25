@@ -1,8 +1,3 @@
-Vumbi car models — from Poly Pizza (https://poly.pizza), CC-BY / CC0.
-Credit each creator before any public/commercial release:
-
-coupe.glb |  | https://poly.pizza/m/4P4buLkUIjH
-rx7.glb |  | https://poly.pizza/m/SnIoWlh7S2
-stratos.glb |  | https://poly.pizza/m/7h-gfgCLPVO
-jeep.glb |  | https://poly.pizza/m/0CZY9yGxi6Y
-hatch.glb |  | https://poly.pizza/m/1uZKezeldGG
+Vumbi car models — AI-generated with Meshy (https://meshy.ai), low-poly type.
+Tinted + flat-shaded in-game. Generated 2026-07-25:
+  m_coupe (Simba), m_wedge (Nyoka), m_suv (Tembo), m_hatch (Swala), m_matatu (Matatu)

@@ -53,12 +53,33 @@
       .fcard button { font-family: var(--sans); font-size: 15px; font-weight: 600; padding: 11px 22px; border-radius: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: var(--paper); }
       .fcard button.primary { background: var(--accent); border-color: var(--accent); color: #2a1406; }
 
+      /* pause — same card language as the finish overlay, stacked menu */
+      .pause { position: fixed; inset: 0; z-index: 11; display: none; place-items: center; background: rgba(14, 9, 4, 0.62); backdrop-filter: blur(4px); }
+      .pause.on { display: grid; animation: fade 0.25s ease; }
+      .pcard { background: rgba(30, 20, 12, 0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 28px 32px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); font-family: var(--sans); color: var(--paper); width: 340px; }
+      .pcard .cap { font-family: var(--mono); font-size: 13px; letter-spacing: 0.24em; color: var(--accent); text-transform: uppercase; text-align: center; }
+      .pcard .psub { font-family: var(--mono); font-size: 13px; opacity: 0.75; text-align: center; margin: 6px 0 20px; }
+      .pcard .psub b { color: var(--paper); font-variant-numeric: tabular-nums; }
+      .pcol { display: flex; flex-direction: column; gap: 9px; }
+      .pcol button { font-family: var(--sans); font-size: 15px; font-weight: 600; padding: 12px 20px; border-radius: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: var(--paper); width: 100%; }
+      .pcol button:hover { background: rgba(255,255,255,0.12); }
+      .pcol button.primary { background: var(--accent); border-color: var(--accent); color: #2a1406; }
+      .pcol button.primary:hover { filter: brightness(1.07); background: var(--accent); }
+      #pauseOpts { display: none; }
+      .pause.opts #pauseMain { display: none; }
+      .pause.opts #pauseOpts { display: block; }
+      .orow { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin: 14px 0; font-family: var(--mono); font-size: 13px; }
+      .orow > span { opacity: 0.8; }
+      .orow input[type="range"] { flex: 1; max-width: 150px; accent-color: var(--accent); }
+      .tgl { font-family: var(--mono); font-size: 12px; padding: 6px 14px; min-width: 62px; border-radius: 8px; cursor: pointer; border: 1px solid var(--accent); background: rgba(255,122,60,0.14); color: var(--paper); }
+      .tgl.off { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(244,230,207,0.55); }
+
       .keys { position: fixed; right: 16px; bottom: 16px; z-index: 5; background: var(--panel); color: var(--paper); font-family: var(--mono); font-size: 12px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(3px); }
       .keys b { color: var(--accent); }
       @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/main-CeHG9y3a.js"></script>
-    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-CWA7wGaT.js">
+    <script type="module" crossorigin src="/vumbi/assets/main-D-PuSxuC.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-feb8uQBb.js">
   </head>
   <body>
     <div id="app"></div>
@@ -89,11 +110,34 @@
       </div>
     </div>
 
+    <div class="pause" id="pause">
+      <div class="pcard">
+        <div id="pauseMain">
+          <div class="cap">paused</div>
+          <div class="psub">elapsed <b id="pauseTime">0:00.00</b> · <b id="pauseProg">0%</b> of the stage</div>
+          <div class="pcol">
+            <button class="primary" id="resumeBtn">resume</button>
+            <button id="retryBtn">retry stage</button>
+            <button id="optionsBtn">options</button>
+            <button id="pgarageBtn">garage</button>
+          </div>
+        </div>
+        <div id="pauseOpts">
+          <div class="cap">options</div>
+          <div class="psub">saved on this device</div>
+          <div class="orow"><span>sound</span><button class="tgl" id="optSound">on</button></div>
+          <div class="orow"><span>volume</span><input type="range" id="optVol" min="0" max="100" step="5" /></div>
+          <div class="orow"><span>camera shake</span><button class="tgl" id="optShake">on</button></div>
+          <div class="pcol" style="margin-top: 20px"><button id="optBack">back</button></div>
+        </div>
+      </div>
+    </div>
+
     <div class="keys">
       <div><b>W/↑</b> throttle &nbsp; <b>S/↓</b> brake · reverse</div>
       <div><b>A D / ← →</b> steer</div>
       <div><b>Space</b> handbrake &nbsp; <b>R</b> restart</div>
-      <div><b>1–4</b> switch car</div>
+      <div><b>1–4</b> switch car &nbsp; <b>C</b> camera &nbsp; <b>Esc</b> pause</div>
     </div>
 
   </body>

@@ -49,13 +49,21 @@
       .raceBtn:hover { filter: brightness(1.06); }
       .hint { position: fixed; bottom: 20px; right: 20px; font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.55); text-align: right; line-height: 1.7; z-index: 5; }
       .hint b { color: var(--accent); }
+
+      .muteBtn {
+        position: fixed; top: 14px; right: 20px; z-index: 6; font-family: var(--mono); font-size: 12px;
+        padding: 8px 14px; border-radius: 10px; cursor: pointer; backdrop-filter: blur(6px);
+        background: var(--panel); border: 1px solid var(--accent); color: var(--ink);
+      }
+      .muteBtn.off { border-color: rgba(255,255,255,0.12); color: var(--dim); }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/garage-BoX7XUqB.js"></script>
-    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-CWA7wGaT.js">
+    <script type="module" crossorigin src="/vumbi/assets/garage-Dnl1XMbw.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-feb8uQBb.js">
   </head>
   <body>
     <div id="app"></div>
     <div class="title">VUMBI <b>GARAGE</b></div>
+    <button class="muteBtn" id="muteBtn">♪ sound</button>
     <div class="card">
       <div class="name" id="name">240Z</div>
       <div class="blurb" id="blurb"></div>
@@ -67,6 +75,6 @@
     </div>
     <div class="picker" id="picker"></div>
     <button class="raceBtn" id="raceBtn">race this car →</button>
-    <div class="hint"><div>drag to orbit · scroll to zoom</div><div><b>W</b> hold to rev &nbsp; <b>1–4</b> car</div><div><b>F S R T</b> angles &nbsp; <b>Space</b> spin</div></div>
+    <div class="hint"><div>drag to orbit · scroll to zoom</div><div><b>W</b> hold to rev &nbsp; <b>M</b> mute &nbsp; <b>1–4</b> car</div><div><b>F S R T</b> angles &nbsp; <b>Space</b> spin</div></div>
   </body>
 </html>

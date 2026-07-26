@@ -1,3 +1,7 @@
-Vumbi car models — AI-generated with Meshy (https://meshy.ai), low-poly type.
-Tinted + flat-shaded in-game. Generated 2026-07-25:
-  m_coupe (Simba), m_wedge (Nyoka), m_suv (Tembo), m_hatch (Swala), m_matatu (Matatu)
+Vumbi car models — Designersoup "Retro Rally" pack (FBX, textured rally liveries),
+loaded via three.js FBXLoader. Each keeps its baked livery; materials forced opaque
+and yaw-corrected to face +Z in-game.
+  DeltaEvo    (Simba) — Group A hatch
+  BoxerRX     (Nyoka) — AWD turbo
+  RSTurbo     (Chui)  — RWD turbo
+  K10City     (Swala) — kei turbo

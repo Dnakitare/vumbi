@@ -32,6 +32,9 @@
       .stat span { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
       .bar { height: 7px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden; }
       .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), #ffd27a); border-radius: 4px; }
+      /* live tachometer, not a tune stat — separated, and it redlines */
+      .tach { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
+      .tach .bar i { background: linear-gradient(90deg, #6fd08c 0%, #ffd27a 62%, #ff4d3d 92%); }
 
       .picker { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 5; }
       .pick {
@@ -47,8 +50,8 @@
       .hint { position: fixed; bottom: 20px; right: 20px; font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.55); text-align: right; line-height: 1.7; z-index: 5; }
       .hint b { color: var(--accent); }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/garage-DmwG62EH.js"></script>
-    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-B7S39gPq.js">
+    <script type="module" crossorigin src="/vumbi/assets/garage-BoX7XUqB.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-CWA7wGaT.js">
   </head>
   <body>
     <div id="app"></div>
@@ -60,9 +63,10 @@
       <div class="stat"><span>grip</span><div class="bar"><i id="s-grip"></i></div></div>
       <div class="stat"><span>agility</span><div class="bar"><i id="s-agility"></i></div></div>
       <div class="stat"><span>drift</span><div class="bar"><i id="s-drift"></i></div></div>
+      <div class="stat tach"><span>revs</span><div class="bar"><i id="s-revs"></i></div></div>
     </div>
     <div class="picker" id="picker"></div>
     <button class="raceBtn" id="raceBtn">race this car →</button>
-    <div class="hint"><div>drag to orbit · scroll to zoom</div><div><b>1–4</b> car &nbsp; <b>F S R T</b> angles &nbsp; <b>Space</b> spin</div></div>
+    <div class="hint"><div>drag to orbit · scroll to zoom</div><div><b>W</b> hold to rev &nbsp; <b>1–4</b> car</div><div><b>F S R T</b> angles &nbsp; <b>Space</b> spin</div></div>
   </body>
 </html>

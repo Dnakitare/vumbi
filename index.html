@@ -33,6 +33,16 @@
       .rtime { font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
       .rprog { font-size: 12px; opacity: 0.8; margin-top: 2px; letter-spacing: 0.08em; }
 
+      /* co-driver pace note, under the timer */
+      .pacenote {
+        position: fixed; top: 104px; left: 50%; transform: translateX(-50%); z-index: 5;
+        font-family: var(--mono); font-size: 19px; font-weight: 600; letter-spacing: 0.1em;
+        text-transform: uppercase; color: var(--paper); white-space: nowrap; pointer-events: none;
+        opacity: 0; transition: opacity 0.18s ease;
+      }
+      .pacenote.on { opacity: 1; }
+      .pacenote::before { content: "› "; color: var(--accent); }
+
       /* countdown */
       .count { position: fixed; inset: 0; z-index: 8; display: none; place-items: center; pointer-events: none; }
       .count.on { display: grid; }
@@ -78,8 +88,8 @@
       .keys b { color: var(--accent); }
       @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/main-Dabk90Z0.js"></script>
-    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-DIahAqBG.js">
+    <script type="module" crossorigin src="/vumbi/assets/main-CE0-IWY7.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-B2NsT6Aj.js">
   </head>
   <body>
     <div id="app"></div>
@@ -90,6 +100,8 @@
       <div class="rtime" id="racetimer">0:00.00</div>
       <div class="rprog" id="progress">0%</div>
     </div>
+
+    <div class="pacenote shadow" id="pacenote"></div>
 
     <div class="hud shadow">
       <div class="speed"><span id="speed">0</span><small>km/h</small></div>

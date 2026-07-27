@@ -96,10 +96,17 @@
 
       .keys { position: fixed; right: 16px; bottom: 16px; z-index: 5; background: var(--panel); color: var(--paper); font-family: var(--mono); font-size: 12px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(3px); }
       .keys b { color: var(--accent); }
-      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+      /* narrow windows: the help panel yields to the picker, then the picker wraps */
+      @media (max-width: 1050px) { .keys { display: none; } }
+      @media (max-width: 640px) { .cars { flex-wrap: wrap; justify-content: center; max-width: 96vw; } }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; }
+        /* the blink is the download indicator — keep a static equivalent */
+        .cars button.load { opacity: 0.45; border-style: dashed; }
+      }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/main-D5fS-XGG.js"></script>
-    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-BDRQYpAd.js">
+    <script type="module" crossorigin src="/vumbi/assets/main-CLFIG1KZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-D9ktMqJU.js">
   </head>
   <body>
     <div id="app"></div>

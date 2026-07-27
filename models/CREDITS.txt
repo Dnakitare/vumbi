@@ -1,7 +1,15 @@
-Vumbi car models — Designersoup "Retro Rally" pack (FBX, textured rally liveries),
-loaded via three.js FBXLoader. Each keeps its baked livery; materials forced opaque
-and yaw-corrected to face +Z in-game.
+Vumbi car models — Designersoup "Retro Rally" pack (FBX, textured rally
+liveries), loaded via three.js FBXLoader. Each keeps its baked livery;
+materials forced opaque and yaw-corrected to face +Z in-game.
   DeltaEvo    (Simba) — Group A hatch
   BoxerRX     (Nyoka) — AWD turbo
   RSTurbo     (Chui)  — RWD turbo
   K10City     (Swala) — kei turbo
+
+Provenance: the pack shipped as "Designersoups Retro Rally Pack.zip" with no
+license or readme inside; FBX metadata shows the working name "Pixel Car Art
+Pack". Only the textures the models actually reference are included here
+(rally skin, tread, wheel per car); street/plain skin variants, dirt maps, and
+source files from the pack are not redistributed. These models are the pack
+author's work, not covered by this repository's MIT license. If you are the
+author and want different attribution or removal, open an issue.

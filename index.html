@@ -84,11 +84,21 @@
       .tgl { font-family: var(--mono); font-size: 12px; padding: 6px 14px; min-width: 62px; border-radius: 8px; cursor: pointer; border: 1px solid var(--accent); background: rgba(255,122,60,0.14); color: var(--paper); }
       .tgl.off { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: rgba(244,230,207,0.55); }
 
+      /* car picker — swaps the car in place, mid-stage, no restart */
+      .cars { position: fixed; left: 50%; transform: translateX(-50%); bottom: 16px; z-index: 6; display: flex; gap: 6px; }
+      .cars button { font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; color: var(--paper); background: var(--panel); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 9px; padding: 8px 12px; cursor: pointer; backdrop-filter: blur(3px); transition: color 0.15s, border-color 0.15s, background 0.15s; }
+      .cars button:hover { background: rgba(52, 34, 20, 0.82); }
+      .cars button i { font-style: normal; font-size: 10px; opacity: 0.5; margin-right: 6px; }
+      .cars button.on { border-color: var(--accent); color: var(--accent); }
+      .cars button.on i { opacity: 0.85; }
+      .cars button.load { animation: blink 1s ease-in-out infinite; }
+      @keyframes blink { 50% { opacity: 0.45; } }
+
       .keys { position: fixed; right: 16px; bottom: 16px; z-index: 5; background: var(--panel); color: var(--paper); font-family: var(--mono); font-size: 12px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; backdrop-filter: blur(3px); }
       .keys b { color: var(--accent); }
       @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
     </style>
-    <script type="module" crossorigin src="/vumbi/assets/main-BvTACssn.js"></script>
+    <script type="module" crossorigin src="/vumbi/assets/main-D5fS-XGG.js"></script>
     <link rel="modulepreload" crossorigin href="/vumbi/assets/cars-BDRQYpAd.js">
   </head>
   <body>
@@ -146,11 +156,13 @@
       </div>
     </div>
 
+    <div class="cars" id="picker"></div>
+
     <div class="keys">
       <div><b>W/↑</b> throttle &nbsp; <b>S/↓</b> brake · reverse</div>
       <div><b>A D / ← →</b> steer</div>
       <div><b>Space</b> handbrake &nbsp; <b>R</b> restart</div>
-      <div><b>1–4</b> switch car &nbsp; <b>C</b> camera &nbsp; <b>M</b> map &nbsp; <b>Esc</b> pause</div>
+      <div><b>1–4</b> car, any time &nbsp; <b>C</b> camera &nbsp; <b>M</b> map &nbsp; <b>Esc</b> pause</div>
     </div>
 
   </body>
